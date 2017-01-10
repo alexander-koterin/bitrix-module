@@ -54,7 +54,7 @@ class marschroute extends CModule
             'UTIL'          => 'N',
         ),
         'MARSCHROUTE_DELIVERY_COMMENT' => array(
-            'NAME'          => 'Комментарий к доставке МАРШРУТ',
+            'NAME'          => 'Комментарий к доставке Marschroute',
             'TYPE'          => 'STRING',
             'REQUIRED'      => 'N',
             'DEFAULT_VALUE' => '',
@@ -130,10 +130,10 @@ class marschroute extends CModule
                     'TYPE_ID'       => 1,
                     'NAME' => array( // языковые названия
                         'ru' => array(
-                            'NAME' => 'Маршрут'
+                            'NAME' => 'Marschroute'
                         ),
                         'en' => array(
-                            'NAME' => 'Marschrout'
+                            'NAME' => 'Marschroute'
                         ),
                     )
                 ));
