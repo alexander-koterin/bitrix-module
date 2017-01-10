@@ -65,7 +65,7 @@ if(typeof BX.Marschroute.widget == 'undefined'){
                 'MARSCHROUTE_DELIVERY_COST': delivery.delivery_cost,
                 'ADDRESS': delivery.address ? delivery.address : '',
                 'MARSCHROUTE_DELIVERY_KLDR': delivery.city_id,
-                'COMMENT': delivery.comment_user ? delivery.comment_user : ''
+                'MARSCHROUTE_DELIVERY_COMMENT': delivery.comment_user ? delivery.comment_user : ''
             };
 
             var it = BX.Sale.OrderAjaxComponent.propertyCollection.getIterator();
@@ -82,16 +82,7 @@ if(typeof BX.Marschroute.widget == 'undefined'){
                     }
                 }
             }
-            /*
-            var orderDescription = document.getElementById('orderDescription');
-            console.log(orderDescription);
-            console.log(orderDescription.value);
-            console.log(fillers);
-            if ( orderDescription && orderDescription.value == '' ) {
-                console.log('set comment');
-                orderDescription.value = fillers['COMMENT'];
-            }
-            */
+
             // Обновим данные заказа
             BX.Sale.OrderAjaxComponent.sendRequest();
         }

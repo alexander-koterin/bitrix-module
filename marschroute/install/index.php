@@ -53,6 +53,16 @@ class marschroute extends CModule
             'IS_LOCATION'   => 'N',
             'UTIL'          => 'N',
         ),
+        'MARSCHROUTE_DELIVERY_COMMENT' => array(
+            'NAME'          => 'Комментарий к доставке МАРШРУТ',
+            'TYPE'          => 'STRING',
+            'REQUIRED'      => 'N',
+            'DEFAULT_VALUE' => '',
+            'SORT'          => 500,
+            'USER_PROPS'    => 'N',
+            'IS_LOCATION'   => 'N',
+            'UTIL'          => 'N',
+        )
     );
 
     public function marschroute()
@@ -118,7 +128,16 @@ class marschroute extends CModule
                     'DEPTH_LEVEL'   => 1,
                     'PARENT_ID'     => 0,
                     'TYPE_ID'       => 1,
+                    'NAME' => array( // языковые названия
+                        'ru' => array(
+                            'NAME' => 'Маршрут'
+                        ),
+                        'en' => array(
+                            'NAME' => 'Marschrout'
+                        ),
+                    )
                 ));
+
             } else {
                 $arLocation = $resLocationsList->fetch();
                 $iLocationId = (int)$arLocation['ID'];
