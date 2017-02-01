@@ -37,7 +37,7 @@ class MarschrouteHandler extends Base
         $request = Context::getCurrent()->getRequest();
         // Устанавливаем стоимость доставки "как есть", потому что другого способа секьюрно отправить эти данные
         // Битрикс не предоставляет
-        $deliveryCost = ($request->isPost()) ? intval($request->get('ORDER_PROP_21')) : 0;
+        $deliveryCost = ($request->isPost()) ? intval($request->get('MARSCHROUTE_DELIVERY_COST')) : 0;
         $result->setDeliveryPrice($deliveryCost);
 
         // Добавляем ссылку "выбрать".
