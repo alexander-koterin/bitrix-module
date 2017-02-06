@@ -37,7 +37,25 @@ class MarschrouteHandler extends Base
         $request = Context::getCurrent()->getRequest();
         // Устанавливаем стоимость доставки "как есть", потому что другого способа секьюрно отправить эти данные
         // Битрикс не предоставляет
-        $deliveryCost = ($request->isPost()) ? intval($request->get('MARSCHROUTE_DELIVERY_COST')) : 0;
+        //
+
+        if ($request->isPost()) {
+            \CModule::IncludeModule('sale');
+
+            $person_type = intval($request->get('PERSON_TYPE'));
+
+            $id_prop = \Bitrix\Sale\Internals\OrderPropsTable::getList(array(
+                'filter' => array(
+                    'PERSON_TYPE_ID' => $person_type,
+                    'CODE' => 'MARSCHROUTE_DELIVERY_COST',
+                ),
+            ))->fetchAll();
+
+            $deliveryCost = ($request->isPost()) ? intval($request->get('ORDER_PROP_'.$id_prop[0]['ID'])) : 0;
+
+        } else {
+            $deliveryCost = 0;
+        };
         $result->setDeliveryPrice($deliveryCost);
 
         // Добавляем ссылку "выбрать".
