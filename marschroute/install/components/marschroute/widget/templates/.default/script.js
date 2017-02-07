@@ -32,6 +32,7 @@ if(typeof BX.Marschroute.widget == 'undefined'){
         };
 
         this.onDeliveryChange = function (force) {
+
             // Не Маршрут, ничего делать не надо
             if ( self.params.DELIVERY_ID != formData.DELIVERY_ID && !force ) {
                 return;
@@ -55,10 +56,11 @@ if(typeof BX.Marschroute.widget == 'undefined'){
 
             // Показываем диалог выбора доставки
             marschrouteWidget.open(widgetOptions);
+
         };
 
         this.updateDeliveryData = function (delivery) {
-            console.log(delivery);
+
             // Заполним скрытые поля
             var fillers = {
                 'MARSCHROUTE_PLACE_ID': delivery.place_id,
@@ -89,6 +91,8 @@ if(typeof BX.Marschroute.widget == 'undefined'){
 
         // Будем отслеживать событие успешной отправки AJAX запроса
         // По нему узнаем, что какие-то данные заказа поменялись
+        //** Сохранение Типа плательщика между переключениями
+        var PERSON_TYPE = formData.PERSON_TYPE;
         BX.addCustomEvent('ONAJAXSUCCESS', function (e) {
             // Это был не заказ
             if ( e.error || !e.order ) {
@@ -97,6 +101,7 @@ if(typeof BX.Marschroute.widget == 'undefined'){
             self.hideMarschrouteFields();
 
             var newFormData = BX.Sale.OrderAjaxComponent.getAllFormData();
+
             // Если доставка стала Маршрут и есть PLACE_ID, то установим специальное местоположение
             if ( newFormData.DELIVERY_ID == self.params.DELIVERY_ID ) {
                 if ( self.params.DEFAULT_LOCATION && objSearch && objSearch.getValue() !== self.params.DEFAULT_LOCATION ) {
@@ -104,11 +109,14 @@ if(typeof BX.Marschroute.widget == 'undefined'){
                 }
             }
 
-            // Если доставку не меняли, то не наше дело
-            if ( newFormData.DELIVERY_ID != formData.DELIVERY_ID ) {
+            // Если доставку не меняли, то не наше дело//
+            if ( newFormData.DELIVERY_ID != formData.DELIVERY_ID || PERSON_TYPE != newFormData.PERSON_TYPE ) {
                 formData = newFormData;
                 self.onDeliveryChange();
             }
+
+            // Сохранение предыдущего Типа плательщика
+            PERSON_TYPE = newFormData['PERSON_TYPE'];
         });
 
         // Поймаем стандартный BX event инициализации selector'а поиска
