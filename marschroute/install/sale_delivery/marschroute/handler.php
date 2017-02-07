@@ -49,9 +49,10 @@ class MarschrouteHandler extends Base
                     'PERSON_TYPE_ID' => $person_type,
                     'CODE' => 'MARSCHROUTE_DELIVERY_COST',
                 ),
-            ))->fetchAll();
+                'limit' => 1
+            ))->fetch();
 
-            $deliveryCost = ($request->isPost()) ? intval($request->get('ORDER_PROP_'.$id_prop[0]['ID'])) : 0;
+            $deliveryCost = ($request->isPost()) ? intval($request->get('ORDER_PROP_'.$id_prop['ID'])) : 0;
 
         } else {
             $deliveryCost = 0;
