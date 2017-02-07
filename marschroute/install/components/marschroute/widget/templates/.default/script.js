@@ -91,8 +91,7 @@ if(typeof BX.Marschroute.widget == 'undefined'){
 
         // Будем отслеживать событие успешной отправки AJAX запроса
         // По нему узнаем, что какие-то данные заказа поменялись
-        //** Сохранение Типа плательщика между переключениями
-        var PERSON_TYPE = formData.PERSON_TYPE;
+
         BX.addCustomEvent('ONAJAXSUCCESS', function (e) {
             // Это был не заказ
             if ( e.error || !e.order ) {
@@ -110,13 +109,11 @@ if(typeof BX.Marschroute.widget == 'undefined'){
             }
 
             // Если доставку не меняли, то не наше дело//
-            if ( newFormData.DELIVERY_ID != formData.DELIVERY_ID || PERSON_TYPE != newFormData.PERSON_TYPE ) {
+            if ( newFormData.DELIVERY_ID != formData.DELIVERY_ID || formData.PERSON_TYPE != newFormData.PERSON_TYPE ) {
                 formData = newFormData;
                 self.onDeliveryChange();
             }
 
-            // Сохранение предыдущего Типа плательщика
-            PERSON_TYPE = newFormData['PERSON_TYPE'];
         });
 
         // Поймаем стандартный BX event инициализации selector'а поиска
