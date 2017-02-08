@@ -52,7 +52,7 @@ class MarschrouteHandler extends Base
                 'limit' => 1
             ))->fetch();
 
-            $deliveryCost = ($request->isPost()) ? intval($request->get('ORDER_PROP_'.$id_prop['ID'])) : 0;
+            $deliveryCost = ($request->isPost() && isset( $id_prop['ID'])) ? intval($request->get('ORDER_PROP_'.$id_prop['ID'])) : 0;
 
         } else {
             $deliveryCost = 0;
