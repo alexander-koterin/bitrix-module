@@ -67,7 +67,14 @@ if(typeof BX.Marschroute.widget == 'undefined'){
                 'MARSCHROUTE_DELIVERY_COST': delivery.delivery_cost,
                 'ADDRESS': delivery.address ? delivery.address : '',
                 'MARSCHROUTE_DELIVERY_KLDR': delivery.city_id,
-                'MARSCHROUTE_DELIVERY_COMMENT': delivery.comment_user ? delivery.comment_user : ''
+                'MARSCHROUTE_DELIVERY_COMMENT': delivery.comment_user ? delivery.comment_user : '',
+                'MARSCHROUTE_STREET' : delivery.address,
+                'MARSCHROUTE_HOUSE': delivery.building_1,
+                'MARSCHROUTE_BULDING': delivery.building_2,
+                'MARSCHROUTE_ROOM': delivery.room,
+                'MARSCHROUTE_INDEX': delivery.post_index,
+                'MARSCHROUTE_METRO': delivery.metro_id,
+                'MARSCHROUTE_DELIVERY_TIME': delivery.delivery_time
             };
 
             var it = BX.Sale.OrderAjaxComponent.propertyCollection.getIterator();
