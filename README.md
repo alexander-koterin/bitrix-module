@@ -34,3 +34,17 @@
 
 	3.5) Из списка компонентов (если скрыт, то нужно раскрыть из правой части окна) раздела [Магазин] -> [Marshcroute widget] перетащите элемент <Виджет расчета доставки>, нажмите <Сохранить>.
 
+
+### Список кастомных полей Битрикса
+
+Эти поля понадобятся при передаче заказа через API Маршрута.
+
+* MARSCHROUTE_STREET - улица
+* MARSCHROUTE_HOUSE - дом
+* MARSCHROUTE_BULDING - строение/корпус
+* MARSCHROUTE_ROOM - квартира/офис
+* MARSCHROUTE_INDEX - почтовый индекс
+* MARSCHROUTE_DELIVERY_TIME - диапазон доставки
+* MARSCHROUTE_PLACE_ID - идентификатор места доставки
+* MARSCHROUTE_KLDR - номер КЛАДР города доставки
+* MARSCHROUTE_DELIVERY_COST - стоимость доставки
