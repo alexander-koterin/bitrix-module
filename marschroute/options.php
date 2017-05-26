@@ -35,17 +35,17 @@ if (!empty($_POST)) {
 		if (isset($_POST['nds']))
 			Option::set($module_id, 'nds', $_POST['nds']);
 
-		//+++
+		
 		if (isset($_POST['api_key']))
 			Option::set($module_id, 'api_key', $_POST['api_key']);
-		//+++
+		
 		if (isset($_POST['status_for_send']))
 			Option::set($module_id, 'status_for_send', $_POST['status_for_send']);
-		//+++
+		
 		if (isset($_POST['pay_systems'])) {
 			Option::set($module_id, 'pay_systems', json_encode($_POST['pay_systems']));
 		}
-		//+++
+		
 		$delivery_statuses = array();
 		foreach ($arDeliveryStatus as $status_ID => $description)
 			if (isset($_POST['delivery_status_' . $status_ID])) {
@@ -150,9 +150,6 @@ $nds = Option::get($module_id, 'nds');
         </td>
         <td>
             <select name="pay_systems[]" multiple>
-                <!--                <option value="">-->
-                <!--                    ----->
-                <!--                </option>-->
                 <?php foreach ($arPaySystems as $key => $val): ?>
                     <option value="<?php echo $val['ID'] ?>" <?php echo (in_array($val['ID'], $pay_systems)) ? 'selected': '' ?> >
                         <?php echo $val['NAME'] ?>
@@ -183,9 +180,7 @@ $nds = Option::get($module_id, 'nds');
 
 </table>
     <input type="submit" name="Update" <?if ($MOD_RIGHT<"W") echo "disabled" ?> value="<?echo GetMessage("MAIN_SAVE")?>" id="update">
-<!--    <input type="reset" name="reset" value="--><?//echo GetMessage("MAIN_RESET")?><!--">-->
     <input type="hidden" name="Update" value="Y">
-<!--    <input type="button" --><?//if ($MOD_RIGHT<"W") echo "disabled" ?><!-- title="--><?//echo GetMessage("MAIN_HINT_RESTORE_DEFAULTS")?><!--" OnClick="RestoreDefaults();" value="--><?//echo GetMessage("MAIN_RESTORE_DEFAULTS")?><!--">-->
     <input type="hidden" name="Restore" value="N" id="hidden_restore">
     <input type="submit" value="Восстановление агента" id="restore"/>
 </form>
@@ -202,24 +197,3 @@ $nds = Option::get($module_id, 'nds');
     });
 
 </script>
-
-<pre>
-<?php
-
-//    $order = Order::load(7);
-//    $shipmentCollection = $order->getShipmentCollection();
-//    var_dump( $shipmentCollection );
-
-//    Bitrix\Sale\Internals\OrderTable::update(7,
-//        array(
-//            "COMMENTS" => '000000000'
-//        ));
-
-//    var_dump( $order->getAvailableFields() );
-
-
-
-
-
-?>
-</pre>
