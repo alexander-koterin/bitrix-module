@@ -115,7 +115,7 @@ class marschroute extends CModule
             'UTIL'          => 'N',
         ),
         'MARSCHROUTE_METRO' => array(
-            'NAME'          => 'metro_id',
+            'NAME'          => 'Идентификатор метро',
             'TYPE'          => 'STRING',
             'REQUIRED'      => 'N',
             'DEFAULT_VALUE' => '',
@@ -124,7 +124,7 @@ class marschroute extends CModule
             'IS_LOCATION'   => 'N',
             'UTIL'          => 'N',
         ),
-        'MARSCHROUTE_DELIVERY_TIME' => array(
+        'MARSCHROUTE_SEND_DATE' => array(
             'NAME'          => 'Диапазон доставки',
             'TYPE'          => 'STRING',
             'REQUIRED'      => 'N',
@@ -133,7 +133,28 @@ class marschroute extends CModule
             'USER_PROPS'    => 'N',
             'IS_LOCATION'   => 'N',
             'UTIL'          => 'N',
-        )
+        ),
+		'MARSCHROUTE_ORDER_ID' => array(
+			'NAME' 			=> 'Индентификатор заказа МАРШРУТ',
+			'TYPE'          => 'STRING',
+			'REQUIRED'      => 'N',
+			'DEFAULT_VALUE' => '',
+			'SORT'          => 500,
+			'USER_PROPS'    => 'N',
+			'IS_LOCATION'   => 'N',
+			'UTIL'          => 'N',
+		),
+        'MARSCHROUTE_ERROR' => array(
+            'NAME' 			=> 'Ошибка при отправке заказа',
+            'TYPE'          => 'STRING',
+            'REQUIRED'      => 'N',
+            'DEFAULT_VALUE' => '',
+            'SORT'          => 500,
+            'USER_PROPS'    => 'N',
+            'IS_LOCATION'   => 'N',
+            'UTIL'          => 'N',
+        ),
+
     );
 
     public function marschroute()
@@ -153,6 +174,17 @@ class marschroute extends CModule
         }
 
         RegisterModule("marschroute");
+
+        CAgent::AddAgent(
+            "CMarschroute::sync();",
+            "marschroute",
+            "N",
+            "5",
+            "",
+            "Y",
+            "",
+            "1000"
+        );
     }
 
     public function DoUninstall()

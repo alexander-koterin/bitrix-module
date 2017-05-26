@@ -10,3 +10,7 @@ class mrsData
         //var_dump($arResult);
     }
 }
+
+CModule::AddAutoloadClasses('marschroute', array(
+    'CMarschroute' => 'classes/general/marschroute.php'
+));
