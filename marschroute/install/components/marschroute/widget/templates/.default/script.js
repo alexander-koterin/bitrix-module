@@ -74,7 +74,7 @@ if(typeof BX.Marschroute.widget == 'undefined'){
                 'MARSCHROUTE_ROOM': delivery.room,
                 'MARSCHROUTE_INDEX': delivery.post_index,
                 'MARSCHROUTE_METRO': delivery.metro_id,
-                'MARSCHROUTE_DELIVERY_TIME': delivery.delivery_time
+                'MARSCHROUTE_SEND_DATE': delivery.delivery_date
             };
 
             var it = BX.Sale.OrderAjaxComponent.propertyCollection.getIterator();
