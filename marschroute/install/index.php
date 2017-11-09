@@ -258,8 +258,14 @@ class marschroute extends CModule
                 return false;
             }
 
-            if (class_exists('\Bitrix\Sale\DeliveryService' )) $resDeliveries = \Bitrix\Sale\DeliveryService::getList(array());
-            if (class_exists( '\Bitrix\Sale\Delivery\Services\Table' )) $resDeliveries = \Bitrix\Sale\Delivery\Services\Table::getList(array());
+            if (class_exists('\Bitrix\Sale\DeliveryService'))
+            {
+                $resDeliveries = \Bitrix\Sale\DeliveryService::getList(array());
+            }
+            if (class_exists( '\Bitrix\Sale\Delivery\Services\Table'))
+            {
+                $resDeliveries = \Bitrix\Sale\Delivery\Services\Table::getList(array());
+            }
 
             $arDeliveries = array();
             while ( $arDelivery = $resDeliveries->fetch() ) {
