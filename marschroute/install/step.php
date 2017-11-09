@@ -5,7 +5,12 @@ IncludeModuleLangFile(__FILE__);
 
 if ( !IsModuleInstalled("sale") ) {
     echo CAdminMessage::ShowMessage(GetMessage("SALE_MODULE_NOT_INSTALLED"));
-} else {
+}
+elseif (!class_exists('\Bitrix\Sale\DeliveryService') && !class_exists('\Bitrix\Sale\Delivery\Services\Table')) {
+    echo CAdminMessage::ShowMessage("Class 'DeliveryService' or 'Delivery\Services\Table' not found");
+}
+else {
+
     // Собираем данные
     // Список сайтов
     $arSites = array();

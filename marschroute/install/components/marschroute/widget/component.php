@@ -6,6 +6,20 @@ if (!CModule::IncludeModule("marschroute"))
     return;
 }
 
+if (class_exists('\Bitrix\Sale\DeliveryService' ))
+{
+    $resDeliveries = \Bitrix\Sale\DeliveryService::getList(array());
+}
+elseif (class_exists( '\Bitrix\Sale\Delivery\Services\Table' ))
+{
+    $resDeliveries = \Bitrix\Sale\Delivery\Services\Table::getList(array());
+}
+else
+{
+    ShowError("Class 'DeliveryService' or 'Delivery\Services\Table' not found");
+    return;
+}
+
 $arResult = array();
 
 $fUser = CSaleBasket::GetBasketUserID();//CSaleUser::getFUserCode();
