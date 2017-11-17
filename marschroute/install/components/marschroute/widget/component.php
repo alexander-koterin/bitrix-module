@@ -50,7 +50,7 @@ $defaultLocation = ($defaultLocationDB->getSelectedRowsCount() == 1) ? $defaultL
 
 const MARSCHROUTE_HANDLER_CLASSNAME = '\Sale\Handlers\Delivery\MarschrouteHandler';
 
-$resDeliveries = \Bitrix\Sale\DeliveryService::getList(array());
+
 $arDeliveries = array();
 while ( $arDelivery = $resDeliveries->fetch() ) {
     $arDelivery = \Bitrix\Sale\Delivery\Services\Manager::getById($arDelivery['ID']);
