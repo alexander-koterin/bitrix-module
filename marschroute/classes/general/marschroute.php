@@ -24,7 +24,7 @@ class CMarschroute
 
 	protected static $api_key;
 	// Базовый URL для запроса
-	protected static $base_url = 'http://erp.test.b.avenija.ru/external/outsource/';
+	protected static $base_url = 'https://api.marschroute.ru/';
 
 	// Настройка http-клиента битрикс
 	protected static $httpClientOptions = array(
