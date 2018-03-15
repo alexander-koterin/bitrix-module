@@ -215,6 +215,7 @@ class marschroute extends CModule
 
     public function InstallDB()
     {
+        \Bitrix\Main\Config\Option::set($this->MODULE_ID, 'base_url', 'https://api.marschroute.ru/');
         /**
          * Блок работы с LOCATIONS
          */

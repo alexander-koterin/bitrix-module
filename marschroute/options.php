@@ -45,7 +45,13 @@ if (!empty($_POST)) {
 		if (isset($_POST['pay_systems'])) {
 			Option::set($module_id, 'pay_systems', json_encode($_POST['pay_systems']));
 		}
-		
+
+		if (isset($_POST['limit']))
+		    Option::set($module_id, 'limit', $_POST['limit']);
+
+		if (isset($_POST['base_url']))
+		    Option::set($module_id, 'base_url', $_POST['base_url']);
+
 		$delivery_statuses = array();
 		foreach ($arDeliveryStatus as $status_ID => $description)
 			if (isset($_POST['delivery_status_' . $status_ID])) {
@@ -100,14 +106,16 @@ $api_key = Option::get($module_id, 'api_key');
 $status_for_send =  Option::get($module_id, 'status_for_send');
 $pay_systems = json_decode(Option::get($module_id, 'pay_systems'));
 $nds = Option::get($module_id, 'nds');
+$limit = Option::get($module_id, 'limit', '');
+$base_url = Option::get($module_id, 'base_url', '')
 
 ?>
 
 
-<form method="POST" action="<?php echo $url_action ?>>">
+<form method="POST" action="<?php echo $url_action ?>">
 <table>
     <tr>
-        <td>Ставка НДС</td>
+        <td><?php echo GetMessage("NDS")?></td>
         <td>
             <select name="nds">
                 <option value="">---</option>
@@ -120,13 +128,19 @@ $nds = Option::get($module_id, 'nds');
         </td>
     </tr>
     <tr>
+        <td><?php echo GetMessage("PRIVATE_KEY")?></td>
         <td>
-            <?php echo GetMessage("API_KEY")?>
-        </td>
-        <td>
-            <input type="text" value="<?php echo $api_key?>" name="api_key"/>
+            <input type="text" size="30" value="<?php echo $api_key?>" name="api_key"/>
         </td>
     </tr>
+
+    <tr>
+        <td><?php echo GetMessage("BASE_URL")?></td>
+        <td>
+            <input type="text" size="30" value="<?php echo $base_url?>" name="base_url"/>
+        </td>
+    </tr>
+
     <tr>
         <td>
             <?php echo GetMessage("STATUS_ORDER")?>
@@ -156,6 +170,12 @@ $nds = Option::get($module_id, 'nds');
                     </option>
                 <?php endforeach; ?>
             </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Ограничение количества передаваемых заказов</td>
+        <td>
+            <input type="text" value="<?php echo $limit?>" name="limit"/>
         </td>
     </tr>
 

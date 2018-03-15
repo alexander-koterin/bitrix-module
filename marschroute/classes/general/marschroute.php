@@ -24,7 +24,7 @@ class CMarschroute
 
 	protected static $api_key;
 	// Базовый URL для запроса
-	protected static $base_url = 'http://erp.test.b.avenija.ru/external/outsource/';
+	protected static $base_url;
 
 	// Настройка http-клиента битрикс
 	protected static $httpClientOptions = array(
@@ -35,7 +35,7 @@ class CMarschroute
 	);
 
 	// Получение массива заполненных параметров заказа по статусу
-    protected function getBitrixOrders($filter='all') {
+    protected function getBitrixOrders($filter='all', $limit = 0) {
 
 		$status_for_send =   Option::get(self::MODULE_ID, 'status_for_send');
 		$pay_systems = Option::get( self::MODULE_ID, 'pay_systems' );
@@ -59,14 +59,17 @@ class CMarschroute
 
 
 		// Получение списка заказа с выбраным статусом
+        $settingsGetList = array(
+            'select' => array(
+                'ID'
+            ),
+            'filter' => $filter,
+        );
 
-		$rsOrdersStatus = Order::getList(
-			array(
-				'select' => array(
-					'ID'
-				),
-				'filter' => $filter
-			));
+        // Если лимит ненулевой, то устанавливаем его
+        if ($limit!==0) $settingsGetList['limit'] = $limit;
+
+		$rsOrdersStatus = Order::getList( $settingsGetList );
 
 		$ordersByStatus = array();
 		$nds = Option::get(self::MODULE_ID, 'nds');
@@ -110,7 +113,9 @@ class CMarschroute
 	// Массив json для отправки
     protected function mapBitrixOrders() {
 
-        $orders = self::getBitrixOrders('not_sended' ); // в параметр
+        $limit = Option::get( self::MODULE_ID, 'limit', 10 );
+
+        $orders = self::getBitrixOrders('not_sended', $limit ); // в параметр
 
         $mapOrders = array();
 
@@ -158,14 +163,14 @@ class CMarschroute
     public static function sync() {
 
         self::$api_key = Option::get(self::MODULE_ID, "api_key");
-
+        self::$base_url = Option::get( self::MODULE_ID, "base_url");
         // Отправка заказов
 		self::sendOrders();
 		// Получение статусов при условии, что нет дублей статутсов доствки в настройках
 		if ( Option::get( self::MODULE_ID, 'delivery_statuses_error' )) {
 			self::takePutStatuses();
 		}
-		echo 'sync OK!!!';
+		//echo 'sync OK!!!';
 		return self::$myself;
     }
 

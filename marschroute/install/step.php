@@ -68,6 +68,7 @@ else {
                 <label for="INSTALL_MARSCHROUTE_LOCATION"><?=GetMessage("INSTALL_MARSCHROUTE_LOCATION")?></label>
             </td>
         </tr>
+
         <tr><td colspan="2"><input type="submit" name="inst" value="<?= GetMessage("MOD_INSTALL")?>"></td></tr>
     </table>
     </form>
