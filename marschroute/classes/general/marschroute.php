@@ -24,7 +24,9 @@ class CMarschroute
 
 	protected static $api_key;
 	// Базовый URL для запроса
+
 	protected static $base_url;
+
 
 	// Настройка http-клиента битрикс
 	protected static $httpClientOptions = array(
