@@ -24,9 +24,7 @@ class CMarschroute
 
 	protected static $api_key;
 	// Базовый URL для запроса
-
 	protected static $base_url;
-
 
 	// Настройка http-клиента битрикс
 	protected static $httpClientOptions = array(
@@ -271,7 +269,7 @@ class CMarschroute
 
 		}
 		catch (Exception $e){
-			echo $e->getMessage()."\n";
+			//echo $e->getMessage()."\n";
 		}
 	}
 
@@ -311,8 +309,8 @@ class CMarschroute
 			}
 
 			catch (Exception $e) {
-				echo $e->getMessage();
-				echo $e->getLine();
+				//echo $e->getMessage();
+				//echo $e->getLine();
 			}
 		}
 	}

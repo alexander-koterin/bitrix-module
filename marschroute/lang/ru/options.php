@@ -1,6 +1,7 @@
 <?php
-
-$MESS["API_KEY"] = "Публичный API-ключ";
+$MESS["NDS"] = "Ставка НДС";
+$MESS["PRIVATE_KEY"] = "Приватный API-ключ";
+$MESS["BASE_URL"] = "Базовый URL для запроса";
 $MESS["STATUS_ORDER"] = "Статус заказа для отправки";
 $MESS["MAIN_SAVE"] = "Сохранить";
 $MESS["MAIN_RESET"] = "Сбросить";
@@ -27,7 +28,3 @@ $MESS["SM_STATUS_35"] = "Отказ";
 $MESS["SM_STATUS_36"] = "Возврат";
 $MESS["SM_STATUS_50"] = "Выполнен";
 $MESS["SM_STATUS_51"] = "Компенсирован";
-
-
-
-
