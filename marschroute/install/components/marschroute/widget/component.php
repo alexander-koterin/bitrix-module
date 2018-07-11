@@ -23,12 +23,12 @@ else
 $arResult = array();
 
 $fUser = CSaleBasket::GetBasketUserID();//CSaleUser::getFUserCode();
-// ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ ÑÑ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ Ð¸ Ð²ÐµÑ Ð·Ð°ÐºÐ°Ð·Ð° (ÐºÐ¾Ñ€Ð·Ð¸Ð½Ñ‹)
+// Ïîëó÷àåì ñòîèìîñòü è âåñ çàêàçà (êîðçèíû)
 $basket = \Bitrix\Sale\Basket::loadItemsForFUser($fUser, SITE_ID);
-$arResult['ORDER_PRICE'] = $basket->getPrice(); // Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð¸Ð· ÐºÐ¾Ñ€Ð·Ð¸Ð½Ñ‹ Ñ†ÐµÐ½Ñƒ Ñ ÑƒÑ‡ÐµÑ‚Ð¾Ð¼ ÑÐºÐ¸Ð´Ð¾Ðº
-$arResult['ORDER_WEIGHT'] = ($basket->getWeight() > 0) ? $basket->getWeight() : 1000; // Ð¿Ð¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð²ÐµÑ, Ð¸Ð½Ð°Ñ‡Ðµ 1000 Ð³Ñ€
+$arResult['ORDER_PRICE'] = $basket->getPrice(); // ïîëó÷àåì èç êîðçèíû öåíó ñ ó÷åòîì ñêèäîê
+$arResult['ORDER_WEIGHT'] = ($basket->getWeight() > 0) ? $basket->getWeight() : 1000; // ïîëó÷àåì âåñ, èíà÷å 1000 ãð
 
-// ÐÐ°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ ÑÐ¿Ð¾ÑÐ¾Ð±Ð° Ð´Ð¾ÑÑ‚Ð°Ð²ÐºÐ¸ Marschroute
+// Íàñòðîéêè ñïîñîáà äîñòàâêè Marschroute
 $deliveryObj = null;
 $arDeliveryList = \Bitrix\Sale\Delivery\Services\Manager::getActiveList();
 foreach ( $arDeliveryList as $arDelivery ) {
@@ -42,7 +42,7 @@ if ( $deliveryObj ) {
     $arResult['PUBLIC_KEY'] = $arConfig['MAIN']['ITEMS']['PUBLIC_KEY']['VALUE'];
 }
 
-// ÐŸÑ€Ð¾Ð²ÐµÑ€Ð¸Ð¼ Ð½Ð°Ð»Ð¸Ñ‡Ð¸Ðµ Ð¼ÐµÑÑ‚Ð¾Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ñ Ð´Ð»Ñ ÐœÐ°Ñ€ÑˆÑ€ÑƒÑ‚Ð°
+// Ïðîâåðèì íàëè÷èå ìåñòîïîëîæåíèÿ äëÿ Ìàðøðóòà
 $defaultLocation = 'marschroute';
 $defaultLocationDB = Bitrix\Sale\Location\LocationTable::getByCode($defaultLocation);
 $defaultLocation = ($defaultLocationDB->getSelectedRowsCount() == 1) ? $defaultLocation : '';

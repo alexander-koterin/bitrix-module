@@ -60,7 +60,7 @@ if (!empty($_POST)) {
 		Option::set($module_id, 'delivery_statuses', json_encode($delivery_statuses));
 	}
 	else {
-        // Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ Р°РіРµРЅС‚Р°, РєРѕС‚РѕСЂС‹Р№ СѓРґР°Р»РµРЅ РёР»Рё Р·Р°РІРµСЂС€РёР»СЃСЏ СЃ РѕС€РёР±РєРѕР№
+        // Восстановление агента, который удален или завершился с ошибкой
 		$our_agent =CAgent::GetList(
 		    array(),
             array( 'NAME' => 'CMarschroute::sync();' )
@@ -88,12 +88,12 @@ Option::set( $module_id, 'delivery_statuses_error', '1' );
 
 $delivery_statuses = json_decode( Option::get( $module_id, 'delivery_statuses' ), true);
 
-// РџРѕРёСЃРє РґСѓР±Р»РµР№ СЃС‚Р°С‚СѓСЃРѕРІ РњРђР РЁР РЈРў
+// Поиск дублей статусов МАРШРУТ
 $line_ds = array();
 foreach ($delivery_statuses as $ds) {
     foreach ($ds as $one_ds){
         if (in_array($one_ds, $line_ds)) {
-		    echo CAdminMessage::ShowMessage('РќРµРѕР±С…РѕРґРёРјРѕ СѓРєР°Р·Р°С‚СЊ С‚РѕР»СЊРєРѕ РѕРґРёРЅ [РЎС‚Р°С‚СѓСЃ РњРђР РЁР РЈРў] РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРё СЃРѕ [РЎС‚Р°С‚СѓСЃ]');
+		    echo CAdminMessage::ShowMessage('Необходимо указать только один [Статус МАРШРУТ] в соответствии со [Статус]');
             Option::set( $module_id, 'delivery_statuses_error', '0' );///***
 			break 2;
         }
@@ -173,14 +173,14 @@ $base_url = Option::get($module_id, 'base_url', '')
         </td>
     </tr>
     <tr>
-        <td>РћРіСЂР°РЅРёС‡РµРЅРёРµ РєРѕР»РёС‡РµСЃС‚РІР° РїРµСЂРµРґР°РІР°РµРјС‹С… Р·Р°РєР°Р·РѕРІ</td>
+        <td>Ограничение количества передаваемых заказов</td>
         <td>
             <input type="text" value="<?php echo $limit?>" name="limit"/>
         </td>
     </tr>
 
-    <tr><td colspan="2" style="text-align: center; padding: 20px; font-weight: bold">РЎРѕРїРѕСЃС‚Р°РІР»РµРЅРёРµ СЃС‚Р°С‚СѓСЃРѕРІ РґРѕСЃС‚Р°РІРєРё</td>  </tr>
-    <tr><td>РЎС‚Р°С‚СѓСЃ</td><td>РЎС‚Р°С‚СѓСЃ РњРђР РЁР РЈРў</td> </tr>
+    <tr><td colspan="2" style="text-align: center; padding: 20px; font-weight: bold">Сопоставление статусов доставки</td>  </tr>
+    <tr><td>Статус</td><td>Статус МАРШРУТ</td> </tr>
 <?php foreach ( $arDeliveryStatus as $status_ID => $description): ?>
     <tr>
         <td>
@@ -202,7 +202,7 @@ $base_url = Option::get($module_id, 'base_url', '')
     <input type="submit" name="Update" <?if ($MOD_RIGHT<"W") echo "disabled" ?> value="<?echo GetMessage("MAIN_SAVE")?>" id="update">
     <input type="hidden" name="Update" value="Y">
     <input type="hidden" name="Restore" value="N" id="hidden_restore">
-    <input type="submit" value="Р’РѕСЃСЃС‚Р°РЅРѕРІР»РµРЅРёРµ Р°РіРµРЅС‚Р°" id="restore"/>
+    <input type="submit" value="Восстановление агента" id="restore"/>
 </form>
 
 <script type="text/javascript">

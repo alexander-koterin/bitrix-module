@@ -1,5 +1,5 @@
 <?php
-$MESS['SALE_MODULE_NOT_INSTALLED'] = "ÐœÐ¾Ð´ÑƒÐ»ÑŒ &laquo;Ð˜Ð½Ñ‚ÐµÑ€Ð½ÐµÑ‚-Ð¼Ð°Ð³Ð°Ð·Ð¸Ð½&raquo; Ð½Ðµ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½.";
-$MESS['INSTALL_ORDER_PROPERTIES'] = "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ ÑÐ²Ð¾Ð¹ÑÑ‚Ð²Ð° Ð·Ð°ÐºÐ°Ð·Ð°.";
-$MESS['INSTALL_ORDER_PROPERTIES_PERSONS'] = "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿Ñ‹ Ð¿Ð»Ð°Ñ‚ÐµÐ»ÑŒÑ‰Ð¸ÐºÐ¾Ð², Ð´Ð»Ñ ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ñ… Ð±ÑƒÐ´ÐµÑ‚ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½ ÑÐ¿Ð¾ÑÐ¾Ð± Ð´Ð¾ÑÑ‚Ð°Ð²ÐºÐ¸.";
-$MESS['INSTALL_MARSCHROUTE_LOCATION'] = "Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¼ÐµÑÑ‚Ð¾Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ðµ \"Marschroute\"";
+$MESS['SALE_MODULE_NOT_INSTALLED'] = "Ìîäóëü &laquo;Èíòåðíåò-ìàãàçèí&raquo; íå óñòàíîâëåí.";
+$MESS['INSTALL_ORDER_PROPERTIES'] = "Äîáàâèòü ñâîéñòâà çàêàçà.";
+$MESS['INSTALL_ORDER_PROPERTIES_PERSONS'] = "Âûáåðèòå òèïû ïëàòåëüùèêîâ, äëÿ êîòîðûõ áóäåò óñòàíîâëåí ñïîñîá äîñòàâêè.";
+$MESS['INSTALL_MARSCHROUTE_LOCATION'] = "Äîáàâèòü ìåñòîïîëîæåíèå \"Marschroute\"";
