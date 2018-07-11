@@ -15,18 +15,18 @@ class CMarschroute
 {
 	const MODULE_ID = "marschroute";
 	const MODULE_CODE = "MARSCHROUTE";
-	// Список статусов
+	// РЎРїРёСЃРѕРє СЃС‚Р°С‚СѓСЃРѕРІ
 	protected static $smStatuses = array(10, 11, 12, 13, 14, 15, 16, 18, 20, 21, 25, 35, 36, 50, 51) ;
-	// Список НДС
+	// РЎРїРёСЃРѕРє РќР”РЎ
 	protected static $nds = array(0, 10, 18);
-	// Ссылка на функцию запуска агента
+	// РЎСЃС‹Р»РєР° РЅР° С„СѓРЅРєС†РёСЋ Р·Р°РїСѓСЃРєР° Р°РіРµРЅС‚Р°
 	protected static $myself = "CMarschroute::sync();";
 
 	protected static $api_key;
-	// Базовый URL для запроса
+	// Р‘Р°Р·РѕРІС‹Р№ URL РґР»СЏ Р·Р°РїСЂРѕСЃР°
 	protected static $base_url;
 
-	// Настройка http-клиента битрикс
+	// РќР°СЃС‚СЂРѕР№РєР° http-РєР»РёРµРЅС‚Р° Р±РёС‚СЂРёРєСЃ
 	protected static $httpClientOptions = array(
 		"waitResponse" => true,
 		"socketTimeout" => 30,
@@ -34,13 +34,13 @@ class CMarschroute
 		"version" => HttpClient::HTTP_1_1
 	);
 
-	// Получение массива заполненных параметров заказа по статусу
+	// РџРѕР»СѓС‡РµРЅРёРµ РјР°СЃСЃРёРІР° Р·Р°РїРѕР»РЅРµРЅРЅС‹С… РїР°СЂР°РјРµС‚СЂРѕРІ Р·Р°РєР°Р·Р° РїРѕ СЃС‚Р°С‚СѓСЃСѓ
     protected function getBitrixOrders($filter='all', $limit = 0) {
 
 		$status_for_send =   Option::get(self::MODULE_ID, 'status_for_send');
 		$pay_systems = Option::get( self::MODULE_ID, 'pay_systems' );
 
-		// Формирование фильтра
+		// Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ С„РёР»СЊС‚СЂР°
     	switch ($filter):
 			case 'all':
 				$filter = array(
@@ -58,7 +58,7 @@ class CMarschroute
 		endswitch;
 
 
-		// Получение списка заказа с выбраным статусом
+		// РџРѕР»СѓС‡РµРЅРёРµ СЃРїРёСЃРєР° Р·Р°РєР°Р·Р° СЃ РІС‹Р±СЂР°РЅС‹Рј СЃС‚Р°С‚СѓСЃРѕРј
         $settingsGetList = array(
             'select' => array(
                 'ID'
@@ -66,7 +66,7 @@ class CMarschroute
             'filter' => $filter,
         );
 
-        // Если лимит ненулевой, то устанавливаем его
+        // Р•СЃР»Рё Р»РёРјРёС‚ РЅРµРЅСѓР»РµРІРѕР№, С‚Рѕ СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РµРіРѕ
         if ($limit!==0) $settingsGetList['limit'] = $limit;
 
 		$rsOrdersStatus = Order::getList( $settingsGetList );
@@ -74,7 +74,7 @@ class CMarschroute
 		$ordersByStatus = array();
 		$nds = Option::get(self::MODULE_ID, 'nds');
 
-		// Формирование массива параметров заказа
+		// Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ РјР°СЃСЃРёРІР° РїР°СЂР°РјРµС‚СЂРѕРІ Р·Р°РєР°Р·Р°
 		while ($rsOrder = $rsOrdersStatus->Fetch()) {
 
 			$order = Order::load($rsOrder['ID']);
@@ -110,12 +110,12 @@ class CMarschroute
 		return $ordersByStatus;
 	}
 
-	// Массив json для отправки
+	// РњР°СЃСЃРёРІ json РґР»СЏ РѕС‚РїСЂР°РІРєРё
     protected function mapBitrixOrders() {
 
         $limit = Option::get( self::MODULE_ID, 'limit', 10 );
 
-        $orders = self::getBitrixOrders('not_sended', $limit ); // в параметр
+        $orders = self::getBitrixOrders('not_sended', $limit ); // РІ РїР°СЂР°РјРµС‚СЂ
 
         $mapOrders = array();
 
@@ -159,14 +159,14 @@ class CMarschroute
         return $mapOrders;
     }
 
-    // Функция синхронизации
+    // Р¤СѓРЅРєС†РёСЏ СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёРё
     public static function sync() {
 
         self::$api_key = Option::get(self::MODULE_ID, "api_key");
         self::$base_url = Option::get( self::MODULE_ID, "base_url");
-        // Отправка заказов
+        // РћС‚РїСЂР°РІРєР° Р·Р°РєР°Р·РѕРІ
 		self::sendOrders();
-		// Получение статусов при условии, что нет дублей статутсов доствки в настройках
+		// РџРѕР»СѓС‡РµРЅРёРµ СЃС‚Р°С‚СѓСЃРѕРІ РїСЂРё СѓСЃР»РѕРІРёРё, С‡С‚Рѕ РЅРµС‚ РґСѓР±Р»РµР№ СЃС‚Р°С‚СѓС‚СЃРѕРІ РґРѕСЃС‚РІРєРё РІ РЅР°СЃС‚СЂРѕР№РєР°С…
 		if ( Option::get( self::MODULE_ID, 'delivery_statuses_error' )) {
 			self::takePutStatuses();
 		}
@@ -174,85 +174,85 @@ class CMarschroute
 		return self::$myself;
     }
 
-    // Получение списка ID статусов
+    // РџРѕР»СѓС‡РµРЅРёРµ СЃРїРёСЃРєР° ID СЃС‚Р°С‚СѓСЃРѕРІ
     public static function getSmStatuses() {
 		return self::$smStatuses;
 	}
 
-	// Получение списка восможных НДС
+	// РџРѕР»СѓС‡РµРЅРёРµ СЃРїРёСЃРєР° РІРѕСЃРјРѕР¶РЅС‹С… РќР”РЎ
 	public static function getNds() {
     	return self::$nds;
 	}
 
-	// Получение и установка статуса для заказов
+	// РџРѕР»СѓС‡РµРЅРёРµ Рё СѓСЃС‚Р°РЅРѕРІРєР° СЃС‚Р°С‚СѓСЃР° РґР»СЏ Р·Р°РєР°Р·РѕРІ
 	protected function takePutStatuses() {
-		// Даты для выгрузки статусов
+		// Р”Р°С‚С‹ РґР»СЏ РІС‹РіСЂСѓР·РєРё СЃС‚Р°С‚СѓСЃРѕРІ
 		$start = Option::get( self::MODULE_ID, 'last_update' );
 		$end = date('d.m.Y');
 
-		//Сравнение дат
+		//РЎСЂР°РІРЅРµРЅРёРµ РґР°С‚
 		if (!empty( $start )) {
 			$_start = new DateTime($start);
 			$_end = new DateTime($end);
-			// Если последнее обновление больше тридцати дней, то выставляем дату на 30 дней позже
+			// Р•СЃР»Рё РїРѕСЃР»РµРґРЅРµРµ РѕР±РЅРѕРІР»РµРЅРёРµ Р±РѕР»СЊС€Рµ С‚СЂРёРґС†Р°С‚Рё РґРЅРµР№, С‚Рѕ РІС‹СЃС‚Р°РІР»СЏРµРј РґР°С‚Сѓ РЅР° 30 РґРЅРµР№ РїРѕР·Р¶Рµ
 			$start = ($_start->diff($_end)->days > 30) ? $_end->modify('-30 days')->format('d.m.Y') : $start;
 		}
-		// Если пустая 'last_update', то начальная и конечечная дата равна текущей
+		// Р•СЃР»Рё РїСѓСЃС‚Р°СЏ 'last_update', С‚Рѕ РЅР°С‡Р°Р»СЊРЅР°СЏ Рё РєРѕРЅРµС‡РµС‡РЅР°СЏ РґР°С‚Р° СЂР°РІРЅР° С‚РµРєСѓС‰РµР№
 		else $start = $end;
 
-		// Получение массива карты статусов из настроек модуля
+		// РџРѕР»СѓС‡РµРЅРёРµ РјР°СЃСЃРёРІР° РєР°СЂС‚С‹ СЃС‚Р°С‚СѓСЃРѕРІ РёР· РЅР°СЃС‚СЂРѕРµРє РјРѕРґСѓР»СЏ
 		$delivery_statuses = json_decode( Option::get(self::MODULE_ID, 'delivery_statuses'), true );
-		// Формирование URL-запроса с датами
+		// Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ URL-Р·Р°РїСЂРѕСЃР° СЃ РґР°С‚Р°РјРё
 		$url = self::$base_url . self::$api_key . "/orders?filter[date_status]=$start%20-%20$end";
 
 		try {
-			// Создание http-клиента и отправка запроса
+			// РЎРѕР·РґР°РЅРёРµ http-РєР»РёРµРЅС‚Р° Рё РѕС‚РїСЂР°РІРєР° Р·Р°РїСЂРѕСЃР°
 			$httpClient = new HttpClient(self::$httpClientOptions);
 			$httpClient->query( HttpClient::HTTP_GET, $url );
 
-			// Результат ответа
+			// Р РµР·СѓР»СЊС‚Р°С‚ РѕС‚РІРµС‚Р°
 			$result = json_decode( $httpClient->getResult(), true );
 
-			// Если ответ не JSON
+			// Р•СЃР»Рё РѕС‚РІРµС‚ РЅРµ JSON
 			if (json_last_error()!=JSON_ERROR_NONE)
-				throw new Exception('Сервер возвращает неверные данные');
+				throw new Exception('РЎРµСЂРІРµСЂ РІРѕР·РІСЂР°С‰Р°РµС‚ РЅРµРІРµСЂРЅС‹Рµ РґР°РЅРЅС‹Рµ');
 
-			// Обработка
+			// РћР±СЂР°Р±РѕС‚РєР°
 			if (!$result['success'])
 				throw new Exception( $result['comment'] );
 
-			// Если тело ответа не пустое, то обрабатываем
+			// Р•СЃР»Рё С‚РµР»Рѕ РѕС‚РІРµС‚Р° РЅРµ РїСѓСЃС‚РѕРµ, С‚Рѕ РѕР±СЂР°Р±Р°С‚С‹РІР°РµРј
 			if ( !empty($result['data'])) {
 
-				// Обработка результатов запроса
+				// РћР±СЂР°Р±РѕС‚РєР° СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ Р·Р°РїСЂРѕСЃР°
 
-				// ID нашей доставки
+				// ID РЅР°С€РµР№ РґРѕСЃС‚Р°РІРєРё
 				$our_delivery_id = \Bitrix\Sale\Delivery\Services\Manager::getIdByCode('MARSCHROUTE');
 
 				foreach ( $result['data'] as $data_item ) {
-					// Если пустой ID на стороне СМ, то его пропускаем
+					// Р•СЃР»Рё РїСѓСЃС‚РѕР№ ID РЅР° СЃС‚РѕСЂРѕРЅРµ РЎРњ, С‚Рѕ РµРіРѕ РїСЂРѕРїСѓСЃРєР°РµРј
 					if (empty($data_item['id'])) continue; ///
 
-					// Загрука заказа по id
+					// Р—Р°РіСЂСѓРєР° Р·Р°РєР°Р·Р° РїРѕ id
 					$order = Order::load( $data_item['id'] );
 
-					// Если нет заказа на стороне Битрикс, то его пропускаем
+					// Р•СЃР»Рё РЅРµС‚ Р·Р°РєР°Р·Р° РЅР° СЃС‚РѕСЂРѕРЅРµ Р‘РёС‚СЂРёРєСЃ, С‚Рѕ РµРіРѕ РїСЂРѕРїСѓСЃРєР°РµРј
 					if (!$order) continue;
 
-					// Установка статусов //////
+					// РЈСЃС‚Р°РЅРѕРІРєР° СЃС‚Р°С‚СѓСЃРѕРІ //////
 
-					// Получение отгрузок у заказа
+					// РџРѕР»СѓС‡РµРЅРёРµ РѕС‚РіСЂСѓР·РѕРє Сѓ Р·Р°РєР°Р·Р°
 					$shipmentCollection = $order->getShipmentCollection();
 
-					// Обход отгрузок
+					// РћР±С…РѕРґ РѕС‚РіСЂСѓР·РѕРє
 					foreach ($shipmentCollection as $shipment) {
-						// Находим первую отгрузку с нашим DELIVERY_ID
+						// РќР°С…РѕРґРёРј РїРµСЂРІСѓСЋ РѕС‚РіСЂСѓР·РєСѓ СЃ РЅР°С€РёРј DELIVERY_ID
 						if ($shipment->getField( 'DELIVERY_ID' ) == $our_delivery_id )	{
 
-							// Выбор нужного статуса из настроек модуля
+							// Р’С‹Р±РѕСЂ РЅСѓР¶РЅРѕРіРѕ СЃС‚Р°С‚СѓСЃР° РёР· РЅР°СЃС‚СЂРѕРµРє РјРѕРґСѓР»СЏ
 
 							foreach ($delivery_statuses as $status_id => $status_item)	{
-								// Если в настройках есть статус, то его и ставим
+								// Р•СЃР»Рё РІ РЅР°СЃС‚СЂРѕР№РєР°С… РµСЃС‚СЊ СЃС‚Р°С‚СѓСЃ, С‚Рѕ РµРіРѕ Рё СЃС‚Р°РІРёРј
 								if (in_array($data_item['status'], $status_item))	{
 									$shipment->setField('STATUS_ID', $status_id);
 									$order->save();
@@ -264,7 +264,7 @@ class CMarschroute
 					}
 				}
 			}
-			// Установка последней даты обновления
+			// РЈСЃС‚Р°РЅРѕРІРєР° РїРѕСЃР»РµРґРЅРµР№ РґР°С‚С‹ РѕР±РЅРѕРІР»РµРЅРёСЏ
 			Option::set( self::MODULE_ID, 'last_update', $end);
 
 		}
@@ -273,37 +273,37 @@ class CMarschroute
 		}
 	}
 
-	// Отправка заказов
+	// РћС‚РїСЂР°РІРєР° Р·Р°РєР°Р·РѕРІ
 	protected function sendOrders(){
-		//Формирование URL-запроса
+		//Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ URL-Р·Р°РїСЂРѕСЃР°
 		$url = self::$base_url . self::$api_key . '/order';
 
-		// Обход массива с put_body
+		// РћР±С…РѕРґ РјР°СЃСЃРёРІР° СЃ put_body
 		foreach (self::mapBitrixOrders() as $nOrder => $put_body){
 			try {
 
-				// Создание http-клиента и отправка запроса
+				// РЎРѕР·РґР°РЅРёРµ http-РєР»РёРµРЅС‚Р° Рё РѕС‚РїСЂР°РІРєР° Р·Р°РїСЂРѕСЃР°
 				$httpClient = new HttpClient(self::$httpClientOptions);
 				$httpClient->query(HttpClient::HTTP_PUT, $url, $put_body);
-				// Результат ответа
+				// Р РµР·СѓР»СЊС‚Р°С‚ РѕС‚РІРµС‚Р°
 				$result = json_decode( $httpClient->getResult(), true );
 
-				// Обработка ошибки
+				// РћР±СЂР°Р±РѕС‚РєР° РѕС€РёР±РєРё
 				if (!$result['success']) {
-                    // Текст ошибки
-				    self::setOrderProp($nOrder, 'MARSCHROUTE_ERROR', "Ошибка [code]:".$result['code']."\n".
+                    // РўРµРєСЃС‚ РѕС€РёР±РєРё
+				    self::setOrderProp($nOrder, 'MARSCHROUTE_ERROR', "РћС€РёР±РєР° [code]:".$result['code']."\n".
                         $result['comment'] . "\n" .
                         json_encode( $result['errors']));
 
 				    continue;
 				}
 
-				// Если существует [id] в теле ответа
+				// Р•СЃР»Рё СЃСѓС‰РµСЃС‚РІСѓРµС‚ [id] РІ С‚РµР»Рµ РѕС‚РІРµС‚Р°
 				if (isset($result['id'])) {
 
-                    // Номера заказа
+                    // РќРѕРјРµСЂР° Р·Р°РєР°Р·Р°
                     self::setOrderProp($result['id'], 'MARSCHROUTE_ORDER_ID', $result['order_id'] );
-                    // Очистка ошибки
+                    // РћС‡РёСЃС‚РєР° РѕС€РёР±РєРё
                     self::setOrderProp($result['id'], 'MARSCHROUTE_ERROR', '' );
 				}
 			}
@@ -315,7 +315,7 @@ class CMarschroute
 		}
 	}
 
-	// Установка Значения поля по Коду и Номеру заказа
+	// РЈСЃС‚Р°РЅРѕРІРєР° Р—РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ РїРѕ РљРѕРґСѓ Рё РќРѕРјРµСЂСѓ Р·Р°РєР°Р·Р°
     protected function setOrderProp($id_order, $code, $value ) {
 	    $order = Order::load($id_order);
 		$props = \Bitrix\Sale\Internals\OrderPropsTable::getList(array(

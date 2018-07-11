@@ -18,12 +18,12 @@ class marschroute extends CModule
     const MARSCHROUTE_HANDLER_CLASSNAME = '\Sale\Handlers\Delivery\MarschrouteHandler';
 
     /**
-     * Íåîáõîäèìûå ïîëÿ çàêàçà
+     * ÐÐµÐ¾Ð±Ñ…Ð¾Ð´Ð¸Ð¼Ñ‹Ðµ Ð¿Ð¾Ð»Ñ Ð·Ð°ÐºÐ°Ð·Ð°
      * @var array
      */
     private $arRequiredPropertiesList = array(
         'MARSCHROUTE_PLACE_ID' => array(
-            'NAME'          => 'Èäåíòèôèêàòîð äîñòàâêè Marschroute',
+            'NAME'          => 'Ð˜Ð´ÐµÐ½Ñ‚Ð¸Ñ„Ð¸ÐºÐ°Ñ‚Ð¾Ñ€ Ð´Ð¾ÑÑ‚Ð°Ð²ÐºÐ¸ Marschroute',
             'TYPE'          => 'NUMBER',
             'REQUIRED'      => 'N',
             'DEFAULT_VALUE' => 0,
@@ -34,7 +34,7 @@ class marschroute extends CModule
 
         ),
         'MARSCHROUTE_DELIVERY_COST' => array(
-            'NAME'          => 'Ñòîèìîñòü äîñòàâêè Marschroute',
+            'NAME'          => 'Ð¡Ñ‚Ð¾Ð¸Ð¼Ð¾ÑÑ‚ÑŒ Ð´Ð¾ÑÑ‚Ð°Ð²ÐºÐ¸ Marschroute',
             'TYPE'          => 'NUMBER',
             'REQUIRED'      => 'N',
             'DEFAULT_VALUE' => 0,
@@ -44,7 +44,7 @@ class marschroute extends CModule
             'UTIL'          => 'N',
         ),
         'MARSCHROUTE_DELIVERY_KLDR' => array(
-            'NAME'          => 'ÊËÀÄÐ',
+            'NAME'          => 'ÐšÐ›ÐÐ”Ð ',
             'TYPE'          => 'STRING',
             'REQUIRED'      => 'N',
             'DEFAULT_VALUE' => '',
@@ -54,7 +54,7 @@ class marschroute extends CModule
             'UTIL'          => 'N',
         ),
         'MARSCHROUTE_DELIVERY_COMMENT' => array(
-            'NAME'          => 'Êîììåíòàðèé ê äîñòàâêå Marschroute',
+            'NAME'          => 'ÐšÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð°Ñ€Ð¸Ð¹ Ðº Ð´Ð¾ÑÑ‚Ð°Ð²ÐºÐµ Marschroute',
             'TYPE'          => 'STRING',
             'REQUIRED'      => 'N',
             'DEFAULT_VALUE' => '',
@@ -65,7 +65,7 @@ class marschroute extends CModule
         ),
 
         'MARSCHROUTE_STREET' => array(
-            'NAME'          => 'Óëèöà',
+            'NAME'          => 'Ð£Ð»Ð¸Ñ†Ð°',
             'TYPE'          => 'STRING',
             'REQUIRED'      => 'N',
             'DEFAULT_VALUE' => '',
@@ -75,7 +75,7 @@ class marschroute extends CModule
             'UTIL'          => 'N',
         ),
         'MARSCHROUTE_HOUSE' => array(
-            'NAME'          => 'Äîì',
+            'NAME'          => 'Ð”Ð¾Ð¼',
             'TYPE'          => 'STRING',
             'REQUIRED'      => 'N',
             'DEFAULT_VALUE' => '',
@@ -85,7 +85,7 @@ class marschroute extends CModule
             'UTIL'          => 'N',
         ),
         'MARSCHROUTE_BULDING' => array(
-            'NAME'          => 'Ñòðîåíèå/êîðïóñ',
+            'NAME'          => 'Ð¡Ñ‚Ñ€Ð¾ÐµÐ½Ð¸Ðµ/ÐºÐ¾Ñ€Ð¿ÑƒÑ',
             'TYPE'          => 'STRING',
             'REQUIRED'      => 'N',
             'DEFAULT_VALUE' => '',
@@ -95,7 +95,7 @@ class marschroute extends CModule
             'UTIL'          => 'N',
         ),
         'MARSCHROUTE_ROOM' => array(
-            'NAME'          => 'Êâàðòèðà/îôèñ',
+            'NAME'          => 'ÐšÐ²Ð°Ñ€Ñ‚Ð¸Ñ€Ð°/Ð¾Ñ„Ð¸Ñ',
             'TYPE'          => 'STRING',
             'REQUIRED'      => 'N',
             'DEFAULT_VALUE' => '',
@@ -105,7 +105,7 @@ class marschroute extends CModule
             'UTIL'          => 'N',
         ),
         'MARSCHROUTE_INDEX' => array(
-            'NAME'          => 'Ïî÷òîâûé èíäåêñ',
+            'NAME'          => 'ÐŸÐ¾Ñ‡Ñ‚Ð¾Ð²Ñ‹Ð¹ Ð¸Ð½Ð´ÐµÐºÑ',
             'TYPE'          => 'STRING',
             'REQUIRED'      => 'N',
             'DEFAULT_VALUE' => '',
@@ -115,7 +115,7 @@ class marschroute extends CModule
             'UTIL'          => 'N',
         ),
         'MARSCHROUTE_METRO' => array(
-            'NAME'          => 'Èäåíòèôèêàòîð ìåòðî',
+            'NAME'          => 'Ð˜Ð´ÐµÐ½Ñ‚Ð¸Ñ„Ð¸ÐºÐ°Ñ‚Ð¾Ñ€ Ð¼ÐµÑ‚Ñ€Ð¾',
             'TYPE'          => 'STRING',
             'REQUIRED'      => 'N',
             'DEFAULT_VALUE' => '',
@@ -125,7 +125,7 @@ class marschroute extends CModule
             'UTIL'          => 'N',
         ),
         'MARSCHROUTE_SEND_DATE' => array(
-            'NAME'          => 'Äèàïàçîí äîñòàâêè',
+            'NAME'          => 'Ð”Ð¸Ð°Ð¿Ð°Ð·Ð¾Ð½ Ð´Ð¾ÑÑ‚Ð°Ð²ÐºÐ¸',
             'TYPE'          => 'STRING',
             'REQUIRED'      => 'N',
             'DEFAULT_VALUE' => '',
@@ -135,7 +135,7 @@ class marschroute extends CModule
             'UTIL'          => 'N',
         ),
 		'MARSCHROUTE_ORDER_ID' => array(
-			'NAME' 			=> 'Èíäåíòèôèêàòîð çàêàçà ÌÀÐØÐÓÒ',
+			'NAME' 			=> 'Ð˜Ð½Ð´ÐµÐ½Ñ‚Ð¸Ñ„Ð¸ÐºÐ°Ñ‚Ð¾Ñ€ Ð·Ð°ÐºÐ°Ð·Ð° ÐœÐÐ Ð¨Ð Ð£Ð¢',
 			'TYPE'          => 'STRING',
 			'REQUIRED'      => 'N',
 			'DEFAULT_VALUE' => '',
@@ -145,7 +145,7 @@ class marschroute extends CModule
 			'UTIL'          => 'N',
 		),
         'MARSCHROUTE_ERROR' => array(
-            'NAME' 			=> 'Îøèáêà ïðè îòïðàâêå çàêàçà',
+            'NAME' 			=> 'ÐžÑˆÐ¸Ð±ÐºÐ° Ð¿Ñ€Ð¸ Ð¾Ñ‚Ð¿Ñ€Ð°Ð²ÐºÐµ Ð·Ð°ÐºÐ°Ð·Ð°',
             'TYPE'          => 'STRING',
             'REQUIRED'      => 'N',
             'DEFAULT_VALUE' => '',
@@ -166,7 +166,7 @@ class marschroute extends CModule
     {
         global $APPLICATION, $step;
         if ( $step < 2 ) {
-            $APPLICATION->IncludeAdminFile("Óñòàíîâêà ìîäóëÿ Marschroute", $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/marschroute/install/step.php");
+            $APPLICATION->IncludeAdminFile("Ð£ÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ° Ð¼Ð¾Ð´ÑƒÐ»Ñ Marschroute", $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/marschroute/install/step.php");
         } elseif ( $step == 2 ) {
             CModule::IncludeModule('sale');
             $this->InstallFiles();
@@ -217,7 +217,7 @@ class marschroute extends CModule
     {
         \Bitrix\Main\Config\Option::set($this->MODULE_ID, 'base_url', 'https://api.marschroute.ru/');
         /**
-         * Áëîê ðàáîòû ñ LOCATIONS
+         * Ð‘Ð»Ð¾Ðº Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹ Ñ LOCATIONS
          */
         $iLocationId = 0;
         if ( !empty($_REQUEST['INSTALL_MARSCHROUTE_LOCATION']) && 'Y' == $_REQUEST['INSTALL_MARSCHROUTE_LOCATION'] ) {
@@ -232,7 +232,7 @@ class marschroute extends CModule
                     'DEPTH_LEVEL'   => 1,
                     'PARENT_ID'     => 0,
                     'TYPE_ID'       => 1,
-                    'NAME' => array( // ÿçûêîâûå íàçâàíèÿ
+                    'NAME' => array( // ÑÐ·Ñ‹ÐºÐ¾Ð²Ñ‹Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ñ
                         'ru' => array(
                             'NAME' => 'Marschroute'
                         ),
@@ -249,13 +249,13 @@ class marschroute extends CModule
         }
 
         /**
-         * Áëîê äîáàâëåíèÿ òèïà äîñòàâêè, ñâîéñòâ çàêàçà è îãðàíè÷åíèé íà ýòè ñâîéñòâà.
+         * Ð‘Ð»Ð¾Ðº Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ñ‚Ð¸Ð¿Ð° Ð´Ð¾ÑÑ‚Ð°Ð²ÐºÐ¸, ÑÐ²Ð¾Ð¹ÑÑ‚Ð² Ð·Ð°ÐºÐ°Ð·Ð° Ð¸ Ð¾Ð³Ñ€Ð°Ð½Ð¸Ñ‡ÐµÐ½Ð¸Ð¹ Ð½Ð° ÑÑ‚Ð¸ ÑÐ²Ð¾Ð¹ÑÑ‚Ð²Ð°.
          */
         if ( !empty($_REQUEST['INSTALL_ORDER_PROPERTIES_PERSONS']) ) {
-            // Ïðîâåðÿåì, åñòü ëè äîñòàâêà Marschroute
+            // ÐŸÑ€Ð¾Ð²ÐµÑ€ÑÐµÐ¼, ÐµÑÑ‚ÑŒ Ð»Ð¸ Ð´Ð¾ÑÑ‚Ð°Ð²ÐºÐ° Marschroute
             $arHandlersList = \Bitrix\Sale\Delivery\Services\Manager::getHandlersList();
             if ( !in_array(self::MARSCHROUTE_HANDLER_CLASSNAME, $arHandlersList) ) {
-                // Ó íàñ ïðîáëåìû ñ óñòàíîâêîé delivery handler
+                // Ð£ Ð½Ð°Ñ Ð¿Ñ€Ð¾Ð±Ð»ÐµÐ¼Ñ‹ Ñ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ¾Ð¹ delivery handler
                 return false;
             }
 
@@ -275,9 +275,9 @@ class marschroute extends CModule
                     $arDeliveries[] = $arDelivery;
                 }
             }
-            // Åñëè íåò íè îäíîé äîñòàâêè Marschroute - ñîçäàäèì
+            // Ð•ÑÐ»Ð¸ Ð½ÐµÑ‚ Ð½Ð¸ Ð¾Ð´Ð½Ð¾Ð¹ Ð´Ð¾ÑÑ‚Ð°Ð²ÐºÐ¸ Marschroute - ÑÐ¾Ð·Ð´Ð°Ð´Ð¸Ð¼
             if ( empty($arDeliveries) ) {
-                // Çàãðóçèì ëîãîòèï
+                // Ð—Ð°Ð³Ñ€ÑƒÐ·Ð¸Ð¼ Ð»Ð¾Ð³Ð¾Ñ‚Ð¸Ð¿
                 $arFile = CFile::MakeFileArray($_SERVER['DOCUMENT_ROOT']."/bitrix/modules/marschroute/install/images/m_logo_500.png");
                 $arFile['MODULE_ID'] = 'marschroute';
                 $iFileID = CFile::SaveFile($arFile,'marschroute');
@@ -285,10 +285,10 @@ class marschroute extends CModule
                 $arDelivery = array(
                     'CODE'                  => 'MARSCHROUTE',
                     'PARENT_ID'             => 0,
-                    'NAME'                  => 'Äîñòàâêà Marschroute',
-                    'ACTIVE'                => 'N', // íå àêòèâíàÿ, ïîêà íå âêëþ÷àò ñàìè
-                    'DESCRIPTION'           => 'Äîñòàâêà Marschroute',
-                    'SORT'                  => 1, // ìû - ñàìà ñêðîìíîñòü
+                    'NAME'                  => 'Ð”Ð¾ÑÑ‚Ð°Ð²ÐºÐ° Marschroute',
+                    'ACTIVE'                => 'N', // Ð½Ðµ Ð°ÐºÑ‚Ð¸Ð²Ð½Ð°Ñ, Ð¿Ð¾ÐºÐ° Ð½Ðµ Ð²ÐºÐ»ÑŽÑ‡Ð°Ñ‚ ÑÐ°Ð¼Ð¸
+                    'DESCRIPTION'           => 'Ð”Ð¾ÑÑ‚Ð°Ð²ÐºÐ° Marschroute',
+                    'SORT'                  => 1, // Ð¼Ñ‹ - ÑÐ°Ð¼Ð° ÑÐºÑ€Ð¾Ð¼Ð½Ð¾ÑÑ‚ÑŒ
                     'LOGOTIP'               => $iFileID,
                     'CLASS_NAME'            => self::MARSCHROUTE_HANDLER_CLASSNAME,
                     'CURRENCY'              => 'RUB',
@@ -304,28 +304,28 @@ class marschroute extends CModule
             }
 
             if ( empty($arDeliveries) ) {
-                // Íåò íè îäíîé ïîäõîäÿùåé ñëóæáû äîñòàâêè
-                // È ñîçäàòü òîæå íå ïîëó÷èëîñü
+                // ÐÐµÑ‚ Ð½Ð¸ Ð¾Ð´Ð½Ð¾Ð¹ Ð¿Ð¾Ð´Ñ…Ð¾Ð´ÑÑ‰ÐµÐ¹ ÑÐ»ÑƒÐ¶Ð±Ñ‹ Ð´Ð¾ÑÑ‚Ð°Ð²ÐºÐ¸
+                // Ð˜ ÑÐ¾Ð·Ð´Ð°Ñ‚ÑŒ Ñ‚Ð¾Ð¶Ðµ Ð½Ðµ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ð»Ð¾ÑÑŒ
                 return;
             }
-            // Âûáèðàåì ïåðâûé ïîïàâøèéñÿ îáðàáîò÷èê, ÏÎÒÎÌÓ ×ÒÎ
+            // Ð’Ñ‹Ð±Ð¸Ñ€Ð°ÐµÐ¼ Ð¿ÐµÑ€Ð²Ñ‹Ð¹ Ð¿Ð¾Ð¿Ð°Ð²ÑˆÐ¸Ð¹ÑÑ Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚Ñ‡Ð¸Ðº, ÐŸÐžÐ¢ÐžÐœÐ£ Ð§Ð¢Ðž
             $arCurrentDelivery = array_shift($arDeliveries);
 
             foreach ($_REQUEST['INSTALL_ORDER_PROPERTIES_PERSONS'] as $personHash) {
-                // Äëÿ ðàçíûõ ñàéòîâ ìîæåò áûòü îäèí è òîò æå òèï ïëàòåëüùèêà, íî
-                // ìû áóäåì ïðîâåðÿòü âñ¸ çàíîâî êàæäûé ðàç ïðîñòî ïîòîìó ÷òî ìîæåì.
+                // Ð”Ð»Ñ Ñ€Ð°Ð·Ð½Ñ‹Ñ… ÑÐ°Ð¹Ñ‚Ð¾Ð² Ð¼Ð¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ Ð¾Ð´Ð¸Ð½ Ð¸ Ñ‚Ð¾Ñ‚ Ð¶Ðµ Ñ‚Ð¸Ð¿ Ð¿Ð»Ð°Ñ‚ÐµÐ»ÑŒÑ‰Ð¸ÐºÐ°, Ð½Ð¾
+                // Ð¼Ñ‹ Ð±ÑƒÐ´ÐµÐ¼ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÑÑ‚ÑŒ Ð²ÑÑ‘ Ð·Ð°Ð½Ð¾Ð²Ð¾ ÐºÐ°Ð¶Ð´Ñ‹Ð¹ Ñ€Ð°Ð· Ð¿Ñ€Ð¾ÑÑ‚Ð¾ Ð¿Ð¾Ñ‚Ð¾Ð¼Ñƒ Ñ‡Ñ‚Ð¾ Ð¼Ð¾Ð¶ÐµÐ¼.
                 list($LID, $personID) = explode('_', $personHash, 2);
-                // Ïðîâåðèì, åñòü ëè íà ñàìîì äåëå òàêîé ñàéò è òèï êëèåíòà
+                // ÐŸÑ€Ð¾Ð²ÐµÑ€Ð¸Ð¼, ÐµÑÑ‚ÑŒ Ð»Ð¸ Ð½Ð° ÑÐ°Ð¼Ð¾Ð¼ Ð´ÐµÐ»Ðµ Ñ‚Ð°ÐºÐ¾Ð¹ ÑÐ°Ð¹Ñ‚ Ð¸ Ñ‚Ð¸Ð¿ ÐºÐ»Ð¸ÐµÐ½Ñ‚Ð°
                 $resSite = \Bitrix\Main\SiteTable::getById($LID);
                 $arSite = $resSite->Fetch();
 
                 $arPersonType = \Bitrix\Sale\PersonType::load($LID, $personID);
-                // Íåïðàâèëüíûé ñàéò èëè íåïðàâèëüíûé òèï êëèåíòà
+                // ÐÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ñ‹Ð¹ ÑÐ°Ð¹Ñ‚ Ð¸Ð»Ð¸ Ð½ÐµÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ñ‹Ð¹ Ñ‚Ð¸Ð¿ ÐºÐ»Ð¸ÐµÐ½Ñ‚Ð°
                 if ( empty($arSite) || empty($arPersonType) ) {
                     continue;
                 }
 
-                // Ïðîâåðèì, åñòü ëè ãðóïïà ñâîéñòâ çàêàçà äëÿ ýòîãî òèïà êëèåíòà
+                // ÐŸÑ€Ð¾Ð²ÐµÑ€Ð¸Ð¼, ÐµÑÑ‚ÑŒ Ð»Ð¸ Ð³Ñ€ÑƒÐ¿Ð¿Ð° ÑÐ²Ð¾Ð¹ÑÑ‚Ð² Ð·Ð°ÐºÐ°Ð·Ð° Ð´Ð»Ñ ÑÑ‚Ð¾Ð³Ð¾ Ñ‚Ð¸Ð¿Ð° ÐºÐ»Ð¸ÐµÐ½Ñ‚Ð°
                 $resOrderGroupList = \Bitrix\Sale\Internals\OrderPropsGroupTable::getList(array(
                     'filter' => array(
                         'PERSON_TYPE_ID' => $personID,
@@ -338,19 +338,19 @@ class marschroute extends CModule
                     $arOrderGroup = $resOrderGroupList->Fetch();
                     $iGroupId = (int)$arOrderGroup['ID'];
                 } else {
-                    // Åñëè íåò - ñîçäàäèì
+                    // Ð•ÑÐ»Ð¸ Ð½ÐµÑ‚ - ÑÐ¾Ð·Ð´Ð°Ð´Ð¸Ð¼
                     $iGroupId = \Bitrix\Sale\Internals\OrderPropsGroupTable::add(array(
                         'PERSON_TYPE_ID' => $personID,
                         'NAME' => 'Marschroute',
                         'SORT' => '500',
                     ))->getId();
                 }
-                // Ïî êàêîé-òî ïðè÷èíå ãðóïïó íå íàøëè è íå ñîçäàëè
+                // ÐŸÐ¾ ÐºÐ°ÐºÐ¾Ð¹-Ñ‚Ð¾ Ð¿Ñ€Ð¸Ñ‡Ð¸Ð½Ðµ Ð³Ñ€ÑƒÐ¿Ð¿Ñƒ Ð½Ðµ Ð½Ð°ÑˆÐ»Ð¸ Ð¸ Ð½Ðµ ÑÐ¾Ð·Ð´Ð°Ð»Ð¸
                 if ( !$iGroupId ) {
                     continue;
                 }
 
-                // Òåïåðü ïðîâåðèì íàëè÷èå íåîáõîäèìûõ ñâîéñòâ â ãðóïïå
+                // Ð¢ÐµÐ¿ÐµÑ€ÑŒ Ð¿Ñ€Ð¾Ð²ÐµÑ€Ð¸Ð¼ Ð½Ð°Ð»Ð¸Ñ‡Ð¸Ðµ Ð½ÐµÐ¾Ð±Ñ…Ð¾Ð´Ð¸Ð¼Ñ‹Ñ… ÑÐ²Ð¾Ð¹ÑÑ‚Ð² Ð² Ð³Ñ€ÑƒÐ¿Ð¿Ðµ
                 $resOrderPropsList = \Bitrix\Sale\Internals\OrderPropsTable::getList(array(
                     'filter' => array(
                         'PERSON_TYPE_ID' => $personID,
@@ -363,7 +363,7 @@ class marschroute extends CModule
                     $arProperties[$arProperty['CODE']] = $arProperty;
                 }
 
-                // Äîáàâèì íåñóùåñòâóþùèå äîñåëå ñâîéñòâà
+                // Ð”Ð¾Ð±Ð°Ð²Ð¸Ð¼ Ð½ÐµÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÑŽÑ‰Ð¸Ðµ Ð´Ð¾ÑÐµÐ»Ðµ ÑÐ²Ð¾Ð¹ÑÑ‚Ð²Ð°
                 $arNotExistingProperties = array_diff(array_keys($this->arRequiredPropertiesList), array_keys($arProperties));
                 if ( !empty($arNotExistingProperties) ) {
                     foreach ( $arNotExistingProperties as $sNotExistingPropertyKey ) {
@@ -371,17 +371,17 @@ class marschroute extends CModule
                         $arProperty['PERSON_TYPE_ID'] = $personID;
                         $arProperty['PROPS_GROUP_ID'] = $iGroupId;
                         $arProperty['CODE'] = $sNotExistingPropertyKey;
-                        // Äîáàâëÿåì â ÁÄ
+                        // Ð”Ð¾Ð±Ð°Ð²Ð»ÑÐµÐ¼ Ð² Ð‘Ð”
                         $iPropertyID = \Bitrix\Sale\Internals\OrderPropsTable::add($arProperty)->getId();
                         $arProperty['ID'] = $iPropertyID;
-                        // Äîáàâèì â ñïèñîê, áóäåò íóæíî ïîçæå
+                        // Ð”Ð¾Ð±Ð°Ð²Ð¸Ð¼ Ð² ÑÐ¿Ð¸ÑÐ¾Ðº, Ð±ÑƒÐ´ÐµÑ‚ Ð½ÑƒÐ¶Ð½Ð¾ Ð¿Ð¾Ð·Ð¶Ðµ
                         $arProperties[$arProperty['CODE']] = $arProperty;
                     }
                 }
 
-                // Äîáàâèì ñâîéñòâàì ñâÿçêè
+                // Ð”Ð¾Ð±Ð°Ð²Ð¸Ð¼ ÑÐ²Ð¾Ð¹ÑÑ‚Ð²Ð°Ð¼ ÑÐ²ÑÐ·ÐºÐ¸
                 foreach ($arProperties as $arProperty) {
-                    // Ïðîâåðÿåì, åñòü ëè ñâÿçêà ñâîéñòâà ñ íàøèì ñïîñîáîì äîñòàâêè
+                    // ÐŸÑ€Ð¾Ð²ÐµÑ€ÑÐµÐ¼, ÐµÑÑ‚ÑŒ Ð»Ð¸ ÑÐ²ÑÐ·ÐºÐ° ÑÐ²Ð¾Ð¹ÑÑ‚Ð²Ð° Ñ Ð½Ð°ÑˆÐ¸Ð¼ ÑÐ¿Ð¾ÑÐ¾Ð±Ð¾Ð¼ Ð´Ð¾ÑÑ‚Ð°Ð²ÐºÐ¸
                     $resRelations = \Bitrix\Sale\Internals\OrderPropsRelationTable::getList(array(
                         'filter' => array(
                             'PROPERTY_ID' => $arProperty['ID'],
@@ -389,7 +389,7 @@ class marschroute extends CModule
                             'ENTITY_ID' => (int)$arCurrentDelivery['ID'],
                         ),
                     ));
-                    // Åñëè íåò - äîáàâèì
+                    // Ð•ÑÐ»Ð¸ Ð½ÐµÑ‚ - Ð´Ð¾Ð±Ð°Ð²Ð¸Ð¼
                     if ( $resRelations->getSelectedRowsCount() < 1 ) {
                         $iPropRelationId = \Bitrix\Sale\Internals\OrderPropsRelationTable::add(array(
                             'PROPERTY_ID' => $arProperty['ID'],

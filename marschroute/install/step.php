@@ -11,15 +11,15 @@ elseif (!class_exists('\Bitrix\Sale\DeliveryService') && !class_exists('\Bitrix\
 }
 else {
 
-    // Собираем данные
-    // Список сайтов
+    // РЎРѕР±РёСЂР°РµРј РґР°РЅРЅС‹Рµ
+    // РЎРїРёСЃРѕРє СЃР°Р№С‚РѕРІ
     $arSites = array();
-    $resSitesList = CSite::GetList($by = 'sort', $order = 'asc');
+    $resSitesList = CSite::GetList($by = 'sort', $order = 'asc');    
     while ( $arSite = $resSitesList->Fetch() ) {
         $arSites[$arSite['LID']] = $arSite;
     }
 
-    // Список плательщиков
+    // РЎРїРёСЃРѕРє РїР»Р°С‚РµР»СЊС‰РёРєРѕРІ
     CModule::IncludeModule('sale');
     $arPersonTypes = array();
     $resPersonTypesList = CSalePersonType::GetList();
@@ -27,7 +27,7 @@ else {
         $arPersonTypes[$arPersonType['ID']] = $arPersonType;
     }
 
-    // Разобьём плательщиков по сайтам
+    // Р Р°Р·РѕР±СЊС‘Рј РїР»Р°С‚РµР»СЊС‰РёРєРѕРІ РїРѕ СЃР°Р№С‚Р°Рј
     $arPersonsByLids = array();
     foreach ( $arPersonTypes as $arPersonType ) {
         foreach ( $arPersonType['LIDS'] as $LID ) {

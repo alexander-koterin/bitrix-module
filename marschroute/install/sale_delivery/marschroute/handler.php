@@ -22,12 +22,12 @@ class MarschrouteHandler extends Base
 
     public static function getClassTitle()
     {
-        return 'Доставка Marschroute';
+        return 'Р”РѕСЃС‚Р°РІРєР° Marschroute';
     }
 
     public static function getClassDescription()
     {
-        return 'Доставка Marschroute';
+        return 'Р”РѕСЃС‚Р°РІРєР° Marschroute';
     }
 
     public function calculateConcrete(\Bitrix\Sale\Shipment $shipment)
@@ -35,8 +35,8 @@ class MarschrouteHandler extends Base
         $result = new CalculationResult();
 
         $request = Context::getCurrent()->getRequest();
-        // Устанавливаем стоимость доставки "как есть", потому что другого способа секьюрно отправить эти данные
-        // Битрикс не предоставляет
+        // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј СЃС‚РѕРёРјРѕСЃС‚СЊ РґРѕСЃС‚Р°РІРєРё "РєР°Рє РµСЃС‚СЊ", РїРѕС‚РѕРјСѓ С‡С‚Рѕ РґСЂСѓРіРѕРіРѕ СЃРїРѕСЃРѕР±Р° СЃРµРєСЊСЋСЂРЅРѕ РѕС‚РїСЂР°РІРёС‚СЊ СЌС‚Рё РґР°РЅРЅС‹Рµ
+        // Р‘РёС‚СЂРёРєСЃ РЅРµ РїСЂРµРґРѕСЃС‚Р°РІР»СЏРµС‚
         //
 
         if ($request->isPost()) {
@@ -59,10 +59,10 @@ class MarschrouteHandler extends Base
         };
         $result->setDeliveryPrice($deliveryCost);
 
-        // Добавляем ссылку "выбрать".
-        // Если кто-то знает, как сделать это без костылей - делайте issue / pull request
+        // Р”РѕР±Р°РІР»СЏРµРј СЃСЃС‹Р»РєСѓ "РІС‹Р±СЂР°С‚СЊ".
+        // Р•СЃР»Рё РєС‚Рѕ-С‚Рѕ Р·РЅР°РµС‚, РєР°Рє СЃРґРµР»Р°С‚СЊ СЌС‚Рѕ Р±РµР· РєРѕСЃС‚С‹Р»РµР№ - РґРµР»Р°Р№С‚Рµ issue / pull request
         $description = $result->getPeriodDescription();
-        $description .= ' <a href="#" id="routewidget_window_open" class="routewidget_window_open">выбрать</a>';
+        $description .= ' <a href="#" id="routewidget_window_open" class="routewidget_window_open">РІС‹Р±СЂР°С‚СЊ</a>';
         $result->setPeriodDescription($description);
 
         return $result;
@@ -72,12 +72,12 @@ class MarschrouteHandler extends Base
     {
         return array(
             'MAIN' => array(
-                'TITLE' => 'Настройки',
+                'TITLE' => 'РќР°СЃС‚СЂРѕР№РєРё',
                 'DESCRIPTION' => '',
                 'ITEMS' => array(
                     'PUBLIC_KEY' => array(
                         'TYPE' => 'STRING',
-                        'NAME' => 'Публичный ключ'
+                        'NAME' => 'РџСѓР±Р»РёС‡РЅС‹Р№ РєР»СЋС‡'
                     )
                 ),
             )
