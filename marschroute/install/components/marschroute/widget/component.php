@@ -40,6 +40,7 @@ foreach ( $arDeliveryList as $arDelivery ) {
 if ( $deliveryObj ) {
     $arConfig = $deliveryObj->getConfig();
     $arResult['PUBLIC_KEY'] = $arConfig['MAIN']['ITEMS']['PUBLIC_KEY']['VALUE'];
+    $arResult['YANDEX_MAPS_KEY'] = $arConfig['MAIN']['ITEMS']['YANDEX_MAPS_KEY']['VALUE'];
 }
 
 // Проверим наличие местоположения для Маршрута
@@ -62,7 +63,8 @@ while ( $arDelivery = $resDeliveries->fetch() ) {
 $arResult['WIDGET_INIT'] = array(
     'DEFAULT_LOCATION' => $defaultLocation,
     'DELIVERY_ID' => $arDeliveries[0]['ID'],
-    'PUBLIC_KEY' => $arDeliveries[0]['CONFIG']['MAIN']['PUBLIC_KEY']
+    'PUBLIC_KEY' => $arDeliveries[0]['CONFIG']['MAIN']['PUBLIC_KEY'],
+    'YANDEX_MAPS_KEY' => $arDeliveries[0]['CONFIG']['MAIN']['YANDEX_MAPS_KEY']
 );
 
 $this->IncludeComponentTemplate();

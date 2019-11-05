@@ -1,6 +1,7 @@
 <?php
 $MESS["NDS"] = "Ставка НДС";
 $MESS["PRIVATE_KEY"] = "Приватный API-ключ";
+$MESS["YANDEX_MAPS_KEY"] = "API-ключ для Яндекс.Карт";
 $MESS["BASE_URL"] = "Базовый URL для запроса";
 $MESS["STATUS_ORDER"] = "Статус заказа для отправки";
 $MESS["MAIN_SAVE"] = "Сохранить";

@@ -9,8 +9,8 @@ if(class_exists("marschroute")) return;
 class marschroute extends CModule
 {
     var $MODULE_ID = 'marschroute';
-    var $MODULE_VERSION = '0.0.1';
-    var $MODULE_VERSION_DATE = '2016-12-02 16:25:00';
+    var $MODULE_VERSION = '0.0.2';
+    var $MODULE_VERSION_DATE = '2019-10-30 12:00:00';
     var $MODULE_NAME = 'Marschroute';
     var $MODULE_DESCRIPTION = 'Marschroute delivery module';
     var $MODULE_GROUP_RIGHTS = "N";

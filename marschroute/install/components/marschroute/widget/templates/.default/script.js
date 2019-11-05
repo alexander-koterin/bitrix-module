@@ -135,6 +135,7 @@ if(typeof BX.Marschroute.widget == 'undefined'){
         window.marschrouteWidget = window.marschrouteWidget || new Widget({
             public_key: self.params.PUBLIC_KEY,
             target_id: 'routewidget',
+            yandex_maps_key: self.params.YANDEX_MAPS_KEY,
 
             // Обработка <Подтвердить выбор доставки>
             onSubmit: function (delivery, widget) {
