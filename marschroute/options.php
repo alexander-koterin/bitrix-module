@@ -38,9 +38,6 @@ if (!empty($_POST)) {
 		
 		if (isset($_POST['api_key']))
 			Option::set($module_id, 'api_key', $_POST['api_key']);
-
-        if (isset($_POST['yandex_maps_key']))
-            Option::set($module_id, 'yandex_maps_key', $_POST['yandex_maps_key']);
 		
 		if (isset($_POST['status_for_send']))
 			Option::set($module_id, 'status_for_send', $_POST['status_for_send']);
@@ -111,7 +108,6 @@ $pay_systems = json_decode(Option::get($module_id, 'pay_systems'));
 $nds = Option::get($module_id, 'nds');
 $limit = Option::get($module_id, 'limit', '');
 $base_url = Option::get($module_id, 'base_url', '');
-$yandex_maps_key = Option::get($module_id, 'yandex_maps_key','');
 
 ?>
 

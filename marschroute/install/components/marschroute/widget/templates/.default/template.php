@@ -25,10 +25,12 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
     </div>
 </div>
 <script type="text/javascript">
+
     if (!window.BX && top.BX) {
         window.BX = top.BX;
     }
     if ( BX.Sale.OrderAjaxComponent.result ) {
-        new BX.Marschroute.widget(<?=CUtil::PhpToJSObject($arResult['WIDGET_INIT'])?>);
+        new BX.Marschroute.widget( <?=CUtil::PhpToJSObject(array_merge($arResult['WIDGET_INIT'], $arParams))?> );
     }
+
 </script>

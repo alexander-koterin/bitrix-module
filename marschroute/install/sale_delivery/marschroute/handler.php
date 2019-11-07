@@ -79,10 +79,6 @@ class MarschrouteHandler extends Base
                         'TYPE' => 'STRING',
                         'NAME' => 'Публичный ключ'
                     ),
-                    'YANDEX_MAPS_KEY' => array(
-                        'TYPE' => 'STRING',
-                        'NAME' => 'API-ключ для Яндекс.Карт'
-                    )
                 ),
             )
         );
