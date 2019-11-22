@@ -29,7 +29,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
     if (!window.BX && top.BX) {
         window.BX = top.BX;
     }
-    if ( BX.Sale.OrderAjaxComponent.result ) {
+    if ( BX.Sale &&  BX.Sale.OrderAjaxComponent && BX.Sale.OrderAjaxComponent.result ) {
         new BX.Marschroute.widget( <?=CUtil::PhpToJSObject(array_merge($arResult['WIDGET_INIT'], $arParams))?> );
     }
 
