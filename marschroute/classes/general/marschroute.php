@@ -162,8 +162,10 @@ class CMarschroute
     // Функция синхронизации
     public static function sync() {
 
+        self::log("START SYNC: " . date("Y-m-d H:i:s") );
         self::$api_key = Option::get(self::MODULE_ID, "api_key");
         self::$base_url = Option::get( self::MODULE_ID, "base_url");
+
         // Отправка заказов
 		self::sendOrders();
 		// Получение статусов при условии, что нет дублей статутсов доствки в настройках
@@ -171,6 +173,7 @@ class CMarschroute
 			self::takePutStatuses();
 		}
 		//echo 'sync OK!!!';
+        self::log("END SYNC: " . date("Y-m-d H:i:s") );
 		return self::$myself;
     }
 
@@ -277,16 +280,18 @@ class CMarschroute
 	protected function sendOrders(){
 		//Формирование URL-запроса
 		$url = self::$base_url . self::$api_key . '/order';
-
+        $this->log("URL: $url");
 		// Обход массива с put_body
 		foreach (self::mapBitrixOrders() as $nOrder => $put_body){
 			try {
-
+                $this->log("QUERY: $put_body");
 				// Создание http-клиента и отправка запроса
 				$httpClient = new HttpClient(self::$httpClientOptions);
 				$httpClient->query(HttpClient::HTTP_PUT, $url, $put_body);
 				// Результат ответа
-				$result = json_decode( $httpClient->getResult(), true );
+                $result = $httpClient->getResult();
+                $this->log("RESULT: $result");
+				$result = json_decode( $result, true );
 
 				// Обработка ошибки
 				if (!$result['success']) {
@@ -309,6 +314,9 @@ class CMarschroute
 			}
 
 			catch (Exception $e) {
+			    $this->log("EXCEPTIONS:");
+                $this->log("MESSAGE: " . $e->getMessage());
+                $this->log("LINE: " . $e->getLine());
 				//echo $e->getMessage();
 				//echo $e->getLine();
 			}
@@ -335,4 +343,9 @@ class CMarschroute
         $order->save();
 
 	}
+
+	protected function log($mess) {
+        AddMessage2Log($mess, self::MODULE_ID);
+    }
+
 }
