@@ -35,7 +35,7 @@ class CMarschroute
 	);
 
 	// Получение массива заполненных параметров заказа по статусу
-    protected function getBitrixOrders($filter='all', $limit = 0) {
+    protected static function getBitrixOrders($filter='all', $limit = 0) {
 
 		$status_for_send =   Option::get(self::MODULE_ID, 'status_for_send');
 		$pay_systems = Option::get( self::MODULE_ID, 'pay_systems' );
@@ -111,7 +111,7 @@ class CMarschroute
 	}
 
 	// Массив json для отправки
-    protected function mapBitrixOrders() {
+    protected static function mapBitrixOrders() {
 
         $limit = Option::get( self::MODULE_ID, 'limit', 10 );
 
@@ -277,7 +277,7 @@ class CMarschroute
 	}
 
 	// Отправка заказов
-	protected function sendOrders(){
+	protected static function sendOrders(){
 		//Формирование URL-запроса
 		$url = self::$base_url . self::$api_key . '/order';
         self::log("URL: $url");
@@ -324,7 +324,7 @@ class CMarschroute
 	}
 
 	// Установка Значения поля по Коду и Номеру заказа
-    protected function setOrderProp($id_order, $code, $value ) {
+    protected static function setOrderProp($id_order, $code, $value ) {
 	    $order = Order::load($id_order);
 		$props = \Bitrix\Sale\Internals\OrderPropsTable::getList(array(
 				'filter'=> array(
