@@ -280,17 +280,17 @@ class CMarschroute
 	protected function sendOrders(){
 		//Формирование URL-запроса
 		$url = self::$base_url . self::$api_key . '/order';
-        $this->log("URL: $url");
+        self::log("URL: $url");
 		// Обход массива с put_body
 		foreach (self::mapBitrixOrders() as $nOrder => $put_body){
 			try {
-                $this->log("QUERY: $put_body");
+                self::log("QUERY: $put_body");
 				// Создание http-клиента и отправка запроса
 				$httpClient = new HttpClient(self::$httpClientOptions);
 				$httpClient->query(HttpClient::HTTP_PUT, $url, $put_body);
 				// Результат ответа
                 $result = $httpClient->getResult();
-                $this->log("RESULT: $result");
+                self::log("RESULT: $result");
 				$result = json_decode( $result, true );
 
 				// Обработка ошибки
@@ -314,9 +314,9 @@ class CMarschroute
 			}
 
 			catch (Exception $e) {
-			    $this->log("EXCEPTIONS:");
-                $this->log("MESSAGE: " . $e->getMessage());
-                $this->log("LINE: " . $e->getLine());
+			    self::log("EXCEPTIONS:");
+                self::log("MESSAGE: " . $e->getMessage());
+                self::log("LINE: " . $e->getLine());
 				//echo $e->getMessage();
 				//echo $e->getLine();
 			}
@@ -344,7 +344,7 @@ class CMarschroute
 
 	}
 
-	protected function log($mess) {
+	protected static function log($mess) {
         AddMessage2Log($mess, self::MODULE_ID);
     }
 
