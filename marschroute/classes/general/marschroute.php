@@ -189,6 +189,7 @@ class CMarschroute
 
 	// Получение и установка статуса для заказов
 	protected function takePutStatuses() {
+        self::log("START TAKE STATUSES");
 		// Даты для выгрузки статусов
 		$start = Option::get( self::MODULE_ID, 'last_update' );
 		$end = date('d.m.Y');
@@ -217,12 +218,15 @@ class CMarschroute
 			$result = json_decode( $httpClient->getResult(), true );
 
 			// Если ответ не JSON
-			if (json_last_error()!=JSON_ERROR_NONE)
-				throw new Exception('Сервер возвращает неверные данные');
-
+			if (json_last_error()!=JSON_ERROR_NONE) {
+                self::log("Сервер возвращает неверные данные");
+                throw new Exception('Сервер возвращает неверные данные');
+                            }
 			// Обработка
-			if (!$result['success'])
-				throw new Exception( $result['comment'] );
+			if (!$result['success']) {
+                self::log("COMMENT". print_r($result['comment'], true));
+			    throw new Exception($result['comment']);
+            }
 
 			// Если тело ответа не пустое, то обрабатываем
 			if ( !empty($result['data'])) {
@@ -272,8 +276,13 @@ class CMarschroute
 
 		}
 		catch (Exception $e){
+            self::log("EXCEPTIONS TAKE STATUSES:");
+            self::log("MESSAGE: " . $e->getMessage());
+            self::log("LINE: " . $e->getLine());
 			//echo $e->getMessage()."\n";
 		}
+
+        self::log("END TAKE STATUSES");
 	}
 
 	// Отправка заказов
@@ -320,7 +329,7 @@ class CMarschroute
 			}
 
 			catch (Exception $e) {
-			    self::log("EXCEPTIONS:");
+			    self::log("EXCEPTIONS SEND ORDERS:");
                 self::log("MESSAGE: " . $e->getMessage());
                 self::log("LINE: " . $e->getLine());
 				//echo $e->getMessage();
