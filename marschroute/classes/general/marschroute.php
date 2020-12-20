@@ -278,6 +278,7 @@ class CMarschroute
 
 	// Отправка заказов
 	protected static function sendOrders(){
+        self::log('START SEND ORDERS');
 		//Формирование URL-запроса
 		$url = self::$base_url . self::$api_key . '/order';
         self::log("URL: $url");
@@ -288,9 +289,14 @@ class CMarschroute
 				// Создание http-клиента и отправка запроса
 				$httpClient = new HttpClient(self::$httpClientOptions);
 				$httpClient->query(HttpClient::HTTP_PUT, $url, $put_body);
+
+				//Ошибки
+                $error = $httpClient->getError();
+                self::log("ERORS>>>". print_r($error, true));
+
 				// Результат ответа
                 $result = $httpClient->getResult();
-                self::log("RESULT: $result");
+                self::log("RESULT>>>". print_r($result, true));
 				$result = json_decode( $result, true );
 
 				// Обработка ошибки
@@ -321,6 +327,7 @@ class CMarschroute
 				//echo $e->getLine();
 			}
 		}
+        self::log('END SEND ORDERS');
 	}
 
 	// Установка Значения поля по Коду и Номеру заказа
