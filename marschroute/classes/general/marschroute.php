@@ -57,6 +57,7 @@ class CMarschroute
 			default: return false;
 		endswitch;
 
+		$filter = [];
 
 		// Получение списка заказа с выбраным статусом
         $settingsGetList = array(
@@ -301,7 +302,10 @@ class CMarschroute
 
 				//Ошибки
                 $error = $httpClient->getError();
-                self::log("ERORS>>>". print_r($error, true));
+                if (!empty($error)) {
+                    self::log("ERRORS>>>" . print_r($error, true));
+                    return;
+                }
 
 				// Результат ответа
                 $result = $httpClient->getResult();
