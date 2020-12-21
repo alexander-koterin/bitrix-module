@@ -304,7 +304,7 @@ class CMarschroute
                 $error = $httpClient->getError();
                 if (!empty($error)) {
                     self::log("ERRORS>>>" . print_r($error, true));
-                    return;
+                    continue;
                 }
 
 				// Результат ответа
